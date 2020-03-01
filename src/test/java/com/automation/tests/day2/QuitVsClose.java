@@ -5,20 +5,17 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class QuitVsClose {
-    public static void main(String[] args) throws Exception{
 
+    public static void main(String[] args) throws Exception{
         WebDriverManager.chromedriver().setup();
 
-        WebDriver driver=new ChromeDriver();
-        driver.get("htpp://practice.cybertekschool.com/open_new_tab");
+        WebDriver driver = new ChromeDriver();
 
-        Thread.sleep(4000);
+        driver.get("http://practice.cybertekschool.com/open_new_tab");
 
-        driver.close();
-        //driver.quit();
+        Thread.sleep(5000);
 
-
-
-
+       driver.close(); //will close only one window
+       // driver.quit(); //to close all windows
     }
 }
