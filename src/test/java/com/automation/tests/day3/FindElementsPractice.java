@@ -10,66 +10,42 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class FindElementsPractice {
     public static void main(String[] args) throws Exception{
 
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
-        driver.get("http://practice.cybertekschool.com/login");
+        //        WebDriverManager.chromedriver().setup();
+        //        WebDriver driver = new ChromeDriver();
 
-        driver.findElement(By.name("username")).sendKeys("tomsmith");
-
-        Thread.sleep(2000);
-
-        WebElement password = driver.findElement(By.name("password"));
-        password.sendKeys("SuperSecretPassword");
+        WebDriver driver = DriverFactory.createDriver("chrome");
+        driver.get("http://practice.cybertekschool.com/sign_up");
+        WebElement fullName = driver.findElement(By.name("full_name"));
+        fullName.sendKeys("Mister Twister");
 
         Thread.sleep(2000);
 
-        driver.findElement(By.id("wooden_spoon")).click();
+        WebElement email = driver.findElement(By.name("email"));
+        email.sendKeys("sdet@cybertek.com");
 
         Thread.sleep(2000);
 
-        String expected = "Welcome to the Secure Area. When you are done click logout below.";
-        String actual = driver.findElement(By.tagName("h4")).getText();
+        WebElement signUp = driver.findElement(By.name("wooden_spoon"));
+        //when you see type="submit", you can use submit() instead of click()
+        //it make sense to use when click() method doesn't work
+        signUp.submit();
+        Thread.sleep(2000);
 
-        if (expected.equals(actual)){
+        String expected = "Thank you for signing up. Click the button below to return to the home page.";
+
+        WebElement message = driver.findElement(By.className("subheader"));
+
+        String actual = message.getText(); // To get the text <h3>Text</h3>
+
+        if(expected.equals(actual)){
             System.out.println("TEST PASSED");
         }else {
             System.out.println("TEST FAILED");
         }
 
-        //let's click on Logout button. It looks like a button, but it's actually a link
-        //every element with <a> tag is a link
-        //if you have couple spaces in the text, just use partialLinkText instead of linkText
-        //linkText - equals()
-        //partialLinkText - contains()-complete match doesn't required
-
-        WebElement logout = driver.findElement(By.partialLinkText("Logout"));
-
-        String href=logout.getAttribute(("href"));
-        System.out.println(href);
-
-        String classname=logout.getAttribute("class");
-        System.out.println(classname);
-
-        logout.click();
-        Thread.sleep(2000);
-
-        //let's enter invalid credentials
-        driver.findElement(By.name("username")).sendKeys("wrong");
-        driver.findElement(By.name("password")).sendKeys("wrong");
-        driver.findElement(By.id("wooden_spoon")).click();
-
-        Thread.sleep(2000);
-
-        WebElement errorMessage = driver.findElement(By.id("flash-messages"));
-        System.out.println(errorMessage.getText());
-        Thread.sleep(2000);
-
-        driver.quit();
-
-
-
-
-
+        driver.quit();//to close everything
+    }
+}
 
 //we are writing same codes again and again
 //we will write a method and call it : DRY Principle
@@ -83,5 +59,5 @@ public class FindElementsPractice {
 WebDriverManager.chromedriver().setup();
 WebDriver driver = new ChromeDriver();
  */
-    }
-}
+
+
