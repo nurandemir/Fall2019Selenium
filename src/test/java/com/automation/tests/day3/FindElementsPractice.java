@@ -10,34 +10,65 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class FindElementsPractice {
     public static void main(String[] args) throws Exception{
 
-//        WebDriverManager.chromedriver().setup();
-//        WebDriver driver=new ChromeDriver();
-        WebDriver driver= DriverFactory.createDriver("chrome");
-        driver.get("http://practice.cybertekschool.com/sign_up");
+        WebDriverManager.chromedriver().setup();
+        WebDriver driver = new ChromeDriver();
+        driver.get("http://practice.cybertekschool.com/login");
 
-       WebElement fullName=driver.findElement(By.name("full_name"));
+        driver.findElement(By.name("username")).sendKeys("tomsmith");
 
-       fullName.sendKeys("Mister Twister");
-       Thread.sleep(2000);
-       WebElement email=driver.findElement(By.name("email"));
-       email.sendKeys("sdet@cybertek.com");
+        Thread.sleep(2000);
 
-       WebElement signUp=driver.findElement(By.name("wooden_spoon"));
-       signUp.submit();
-       Thread.sleep(2000);
+        WebElement password = driver.findElement(By.name("password"));
+        password.sendKeys("SuperSecretPassword");
 
-       String expected="Thank you for signing up. Click the button below to return to the home page.";
-       WebElement message=driver.findElement(By.className("subheader"));
+        Thread.sleep(2000);
 
-       String actual=message.getText();// to get the text     <h3>text</h3>
-       if(expected.equals(actual)){
-           System.out.println("Test Passed ");
-       }else{
-           System.out.println("Test Failed");
-       }
+        driver.findElement(By.id("wooden_spoon")).click();
+
+        Thread.sleep(2000);
+
+        String expected = "Welcome to the Secure Area. When you are done click logout below.";
+        String actual = driver.findElement(By.tagName("h4")).getText();
+
+        if (expected.equals(actual)){
+            System.out.println("TEST PASSED");
+        }else {
+            System.out.println("TEST FAILED");
+        }
+
+        //let's click on Logout button. It looks like a button, but it's actually a link
+        //every element with <a> tag is a link
+        //if you have couple spaces in the text, just use partialLinkText instead of linkText
+        //linkText - equals()
+        //partialLinkText - contains()-complete match doesn't required
+
+        WebElement logout = driver.findElement(By.partialLinkText("Logout"));
+
+        String href=logout.getAttribute(("href"));
+        System.out.println(href);
+
+        String classname=logout.getAttribute("class");
+        System.out.println(classname);
+
+        logout.click();
+        Thread.sleep(2000);
+
+        //let's enter invalid credentials
+        driver.findElement(By.name("username")).sendKeys("wrong");
+        driver.findElement(By.name("password")).sendKeys("wrong");
+        driver.findElement(By.id("wooden_spoon")).click();
+
+        Thread.sleep(2000);
+
+        WebElement errorMessage = driver.findElement(By.id("flash-messages"));
+        System.out.println(errorMessage.getText());
+        Thread.sleep(2000);
+
+        driver.quit();
 
 
-       driver.quit();
+
+
 
 
 //we are writing same codes again and again
