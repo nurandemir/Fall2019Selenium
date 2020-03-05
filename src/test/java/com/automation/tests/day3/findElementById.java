@@ -20,7 +20,7 @@ public class findElementById {
 
         Thread.sleep(2000);
 
-        driver.findElement(By.id("wooden_spoon")).click();
+        driver.findElement(By.id("wooden_spoon")).click(); //login
 
 
         Thread.sleep(2000);
@@ -45,31 +45,31 @@ public class findElementById {
         WebElement logout = driver.findElement(By.partialLinkText("Logout"));
 
         String href = logout.getAttribute("href");
-        String className = logout.getAttribute("class");
-
         System.out.println(href);
+
+        String className = logout.getAttribute("class");
         System.out.println(className);
 
         logout.click();
         Thread.sleep(2000);
 
-//        //let's enter invalid credentials
-//
-//        driver.findElement(By.name("username")).sendKeys("wrong");
-//        driver.findElement(By.name("password")).sendKeys("wrong");
-//        driver.findElement(By.id("wooden_spoon")).click();
-//
-//
-//
-//        Thread.sleep(2000);
-//
-//        WebElement errorMessage = driver.findElement(By.id("flash-messages"));
-//
-//        System.out.println(errorMessage.getText());
-//
-//        Thread.sleep(2000);
+        //let's enter invalid credentials
 
-        driver.quit();
+        driver.findElement(By.name("username")).sendKeys("wrong");
+        driver.findElement(By.name("password")).sendKeys("wrong");
+        driver.findElement(By.id("wooden_spoon")).click();
+
+
+
+        Thread.sleep(2000);
+
+        WebElement errorMessage = driver.findElement(By.id("flash-messages"));
+
+        System.out.println(errorMessage.getText());
+
+        Thread.sleep(2000);
+
+       driver.quit();
 
 
     }
