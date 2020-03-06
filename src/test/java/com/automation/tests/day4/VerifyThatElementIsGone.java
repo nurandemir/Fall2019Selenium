@@ -26,7 +26,6 @@ public class VerifyThatElementIsGone {
         Thread.sleep(2000);
 
         List<WebElement> list = driver.findElements(By.id("disappearing_button"));
-
         //if size is 0, that means no elements were found
         if(list.size() == 0){
             System.out.println("TEST PASSED");
