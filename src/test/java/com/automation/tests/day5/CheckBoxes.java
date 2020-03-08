@@ -25,19 +25,19 @@ public class CheckBoxes {
         BrowserUtils.wait(2);
 
         //go over collection of checkboxes
-        for(int i=0; i<checkBoxes.size(); i++) {
+        for (int i = 0; i < checkBoxes.size(); i++) {
             //       if visible,                            eligible to click  and         not clicked yet
             if (checkBoxes.get(i).isDisplayed() && checkBoxes.get(i).isEnabled() && (!checkBoxes.get(i).isSelected())) {
                 //if checkbox is not selected, click on it
                 checkBoxes.get(i).click(); // click on the checkbox
-                System.out.println(i+1 +" checkbox clicked!");
-            } else{
-                System.out.println(i+1 +" checkbox wasn't clicked!");
+                System.out.println(i + 1 + " checkbox-1 is clicked!");
+            } else {
+                System.out.println( "checkbox "+(i + 1) +" wasn't clicked!");
+                System.out.println();
             }
         }
         BrowserUtils.wait(2);
         driver.quit();
-
 
 
     }
