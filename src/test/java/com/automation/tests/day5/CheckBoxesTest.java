@@ -15,15 +15,18 @@ public class CheckBoxesTest {
         WebDriverManager.chromedriver().version("79").setup();
         WebDriver driver = new ChromeDriver();
         driver.get("http://practice.cybertekschool.com/checkboxes");
+
         //#TASK
         //verify that 1st checkbox is not selected and 2nd is selected
         BrowserUtils.wait(4);
+
         List<WebElement> checkBoxes = driver.findElements(By.tagName("input"));
         if(!checkBoxes.get(0).isSelected() && checkBoxes.get(1).isSelected()){
             System.out.println("TEST PASSED");
         }else{
             System.out.println("TEST FAILED");
         }
+
         BrowserUtils.wait(2);
         //let's click on the first checkbox and verify it's clicked
 //        checkBoxes.get(0).click();

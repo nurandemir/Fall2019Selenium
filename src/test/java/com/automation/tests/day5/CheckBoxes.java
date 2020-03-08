@@ -20,7 +20,9 @@ public class CheckBoxes {
 
         //<input type="checkbox" checked="">
         List<WebElement> checkBoxes = driver.findElements(By.tagName("input"));
-//        checkBoxes.get(0).click(); // click on first checkbox
+
+        //checkBoxes.get(0).click(); // click on first checkbox
+        //checkBoxes.get(1).click(); click on the second checkbox
 
         BrowserUtils.wait(2);
 
@@ -30,7 +32,7 @@ public class CheckBoxes {
             if (checkBoxes.get(i).isDisplayed() && checkBoxes.get(i).isEnabled() && (!checkBoxes.get(i).isSelected())) {
                 //if checkbox is not selected, click on it
                 checkBoxes.get(i).click(); // click on the checkbox
-                System.out.println(i + 1 + " checkbox-1 is clicked!");
+                System.out.println("checkbox "+(i + 1)+ " is clicked!");
             } else {
                 System.out.println( "checkbox "+(i + 1) +" wasn't clicked!");
                 System.out.println();

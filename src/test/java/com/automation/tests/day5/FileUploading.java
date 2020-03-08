@@ -13,15 +13,20 @@ public class FileUploading {
         WebDriver driver = new ChromeDriver();
         driver.get("http://practice.cybertekschool.com/upload");
         BrowserUtils.wait(5);
+
         WebElement upload = driver.findElement(By.id("file-upload"));
         //https://docs.oracle.com/javase/tutorial/essential/environment/sysprop.html
         //I am gonna upload pom.xml file
         String filePath = System.getProperty("user.dir")+"/pom.xml";
+        String filePath2="/Users/nuran/IdeaProjects/Fall2019Selenium/.gitignore";
 
         System.out.println(filePath);
+        System.out.println(filePath2);
 
 
-        upload.sendKeys(filePath);
+       // upload.sendKeys(filePath);
+        upload.sendKeys(filePath2);
+
         driver.findElement(By.id("file-submit")).click();//click to upload
         BrowserUtils.wait(5);
         driver.quit();

@@ -34,11 +34,11 @@ public class RegistrationFrom {
 
         driver.findElement(By.name("birthday")).sendKeys("01/01/2007");
 
-        driver.findElement(By.id("inlineCheckbox2")).click();
+        driver.findElement(By.id("inlineCheckbox2")).click(); //select java
 
         BrowserUtils.wait(3);
 
-        driver.findElement(By.id("wooden_spoon")).click();
+        driver.findElement(By.id("wooden_spoon")).click(); //click submit button
 
         BrowserUtils.wait(3);
 

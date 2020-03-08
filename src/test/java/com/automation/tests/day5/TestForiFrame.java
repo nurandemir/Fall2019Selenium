@@ -15,19 +15,32 @@ public class TestForiFrame {
         driver.get("http://practice.cybertekschool.com/iframe");
 
         BrowserUtils.wait(5);
-        driver.switchTo().frame("mce_0_ifr");
+        //WebElement textInput=driver.findElement(By.id("tinymce")); not visible need to switch to iFrame
+        //System.out.println(textInput.getText()); NoSuchElementException
 
-        WebElement textInput=driver.findElement(By.id("tinymce"));
+
+        //before looking for that element, we need to jump to that frame
+        //you can specify: name, id, index or webelement of the frame
+        //it's like we are jumping to another layer
+
+        driver.switchTo().frame("mce_0_ifr"); // ***
+
+        //now, this content will be visible
+        WebElement textInput = driver.findElement(By.id("tinymce"));
+
         System.out.println(textInput.getText());
 
-        BrowserUtils.wait(3);
-        textInput.clear();
-        textInput.sendKeys("Hello world");
-        BrowserUtils.wait(3);
+        BrowserUtils.wait(4);
 
-driver.switchTo().defaultContent();
+        textInput.clear();//to delete text
+        textInput.sendKeys("Hello, World!");
 
-WebElement heading=driver.findElement(By.tagName("h3"));
+        BrowserUtils.wait(4);
+
+        //exit from the frame
+        driver.switchTo().defaultContent(); // *** switch to main HTML
+
+        WebElement heading = driver.findElement(By.tagName("h3"));
         System.out.println(heading.getText());
 
 

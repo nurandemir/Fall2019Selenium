@@ -22,12 +22,12 @@ public class NestedFrame {
         WebElement content = driver.findElement(By.id("content"));//content inside a child frame
         System.out.println(content.getText());
 
-        driver.switchTo().parentFrame();//go to the top frame
-
+        driver.switchTo().parentFrame();//you need to go to the parent frame then child frame
         driver.switchTo().frame("frame-right");//switch to the right frame
 
         WebElement body = driver.findElement(By.tagName("body"));
         System.out.println(body.getText());
+
         //to go to the bottom frame, you need to switch to the default content
         //because, top frame is a sibling for bottom frame, but not a parent
         driver.switchTo().defaultContent();
