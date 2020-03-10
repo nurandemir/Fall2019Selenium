@@ -16,7 +16,7 @@ public class SelectByText {
         BrowserUtils.wait(3);
         //create a webelement object for drop-down first
         WebElement simpleDropdown = driver.findElement(By.id("dropdown"));
-        //provide weblement object into constructor
+        //provide webelement object into constructor
         Select selectSimpleDropdown = new Select(simpleDropdown);
         //select by visible text
         selectSimpleDropdown.selectByVisibleText("Option 2");

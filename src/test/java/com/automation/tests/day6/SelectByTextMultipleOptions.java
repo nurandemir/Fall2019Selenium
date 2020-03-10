@@ -10,26 +10,35 @@ import org.openqa.selenium.support.ui.Select;
 
 public class SelectByTextMultipleOptions {
     public static void main(String[] args) {
+
         WebDriver driver = DriverFactory.createDriver("chrome");
         driver.get("http://practice.cybertekschool.com/dropdown");
         BrowserUtils.wait(3);
 
         Select languagesSelect = new Select(driver.findElement(By.name("Languages")));
+
+        //Whether this select element support selecting multiple options at the same time?
+        //This is done by checking the value of the "multiple" attribute
         boolean isMultiple = languagesSelect.isMultiple();
-        System.out.println("isMultiple = " + isMultiple);
+        System.out.println("isMultiple = " + isMultiple);//if it's true, you can select many options
 
         languagesSelect.selectByVisibleText("Java");
         languagesSelect.selectByVisibleText("JavaScript");
         languagesSelect.selectByVisibleText("Python");
 
+        //lets get all selected options
         List<WebElement>selectedLanguages=languagesSelect.getAllSelectedOptions();
 
         for(WebElement selectedLanguage:selectedLanguages){
             System.out.println("selectedLanguage = " + selectedLanguage.getText());
         }
+
         BrowserUtils.wait(3);
+
         languagesSelect.deselectByVisibleText("Java");
+
         BrowserUtils.wait(3);
+
         languagesSelect.deselectAll();
 
 
