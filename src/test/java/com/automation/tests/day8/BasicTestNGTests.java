@@ -4,6 +4,22 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 
 public class BasicTestNGTests {
+    @BeforeSuite
+    public void beforeSuite(){
+        System.out.println("Before Suit");
+    }
+    @AfterSuite
+    public void afterSuite(){
+        System.out.println("After Suit");
+    }
+    @BeforeTest
+    public void beforeTest(){
+        System.out.println("Before Test");
+    }
+    @AfterTest
+    public void afterTest(){
+        System.out.println("After Test");
+    }
     @BeforeClass
     public void beforeClass(){
         System.out.println("Before Class");
