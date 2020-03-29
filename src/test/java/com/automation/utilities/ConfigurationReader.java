@@ -1,12 +1,13 @@
 
 package com.automation.utilities;
-
+//day 13
 import java.io.FileInputStream;
 import java.util.Properties;
 
 public class ConfigurationReader {
 
     private static Properties configFile;
+
     static {
         try {
             //*location of properties file                      file path
@@ -14,7 +15,7 @@ public class ConfigurationReader {
 
             //*get the file as a stream
             FileInputStream input = new FileInputStream(path);
-            //FileInputStream=>gets the file out of java and loads into our program
+            //FileInputStream=>opens the door get the file/data and turn it to something that java understand
 
             //*Create object of properties class
             configFile = new Properties(); //Properties=>allows us load our own custom properties used in program execution

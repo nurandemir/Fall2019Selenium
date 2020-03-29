@@ -94,7 +94,7 @@ public class JSExecutor2 {
         String expected = "Practice";
         //We create javascriptexecutor object by casting webdriver object
         JavascriptExecutor js = (JavascriptExecutor) driver; //cast to
-        //executeScript- this methos executes javvascript code
+        //executeScript- this methods executes javascript code
         //we provide js code as a String
         //document:
         // String actual=(String)js.executeScript("return document.title");//javascript code

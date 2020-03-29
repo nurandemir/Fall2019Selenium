@@ -27,7 +27,7 @@ public class WebTables {
         ChromeOptions chromeOptions = new ChromeOptions();
         //headless mode makes execution twice faster
         //it does everything except file uploading
-        //set it to tru to make it work
+        //set it to true to make it work
         chromeOptions.setHeadless(false);//to run browser without GUI. Makes browser invisible.
         driver = new ChromeDriver(chromeOptions);
 

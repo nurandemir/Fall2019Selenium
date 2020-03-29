@@ -4,6 +4,7 @@ import com.automation.utilities.BrowserUtils;
 import com.automation.utilities.DriverFactory;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -16,36 +17,35 @@ public class Days {
     private WebDriver driver;
 
 @Test
-public void clickonRandomCheckBox()
-{
-//    List<WebElement> checkboxes = driver.findElements(By.xpath("//input[@type='checkbox']"));
-//    Random ram=new Random();
-//
-//    if(!checkboxes.get(ram).isSelected)
-//    {
-//        checkboxes.get(ram).click();
-//    }
+public void randomlySelect(){
+    List<WebElement> checkBoxes=driver.findElements(By.xpath("//input[@type='checkbox']"));
+    List<WebElement>dayNames=driver.findElements(By.xpath("//label"));
+    Random r=new Random();
+    int count=0;
+    while(count<3){
+        int index=r.nextInt(dayNames.size());
+        if(checkBoxes.get(index).isEnabled()){
+            dayNames.get(index).click();
+            if(dayNames.get(index).getText().equals("Friday")){
+                count++;
+            }
+            System.out.println(dayNames.get(index).getText());
+            dayNames.get(index).click();
+        }
+    }
+
+
+
 }
-//public void randomlySelect(){
-//    List<WebElement> checkBoxes=driver.findElements(By.xpath("//input[@type='checkbox']"));
-//    Random ram=new Random();
-//    int ranDay=ram.nextInt(5);
-//    if(!checkBoxes.get(ram).isSelected)
-//    {
-//        checkBoxes.get(ram).click();
-//    }
-//}
-
-
     @BeforeMethod
     public void setup() {
         driver = DriverFactory.createDriver("chrome");
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        driver.get("http://samples.gwtproject.org/samples/Showcase/Showcase.html#!CwCheckBox");
     }
     @AfterMethod
     public void teardown() {
         BrowserUtils.wait(2);
-        driver.quit();
+       // driver.quit();
     }
-
-
 }
